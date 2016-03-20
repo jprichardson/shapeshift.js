@@ -1,7 +1,5 @@
-var test = require('ava')
+var test = require('tape').test
 var shapeshift = require('../')
-
-test = test.cb
 
 test('should get the deposit limit', function (t) {
   t.plan(2)
@@ -9,7 +7,7 @@ test('should get the deposit limit', function (t) {
   var pair = 'btc_ltc'
   shapeshift.depositLimit(pair, function (err, limit) {
     t.ifError(err, 'no error')
-    t.is(typeof limit, 'string')
+    t.same(typeof limit, 'string')
     t.end()
   })
 })

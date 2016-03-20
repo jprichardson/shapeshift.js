@@ -1,13 +1,11 @@
-var test = require('ava')
+var test = require('tape').test
 var shapeshift = require('../')
-
-test = test.cb
 
 test('should get the market info data for a pair', function (t) {
   t.plan(6)
   shapeshift.marketInfo('btc_ltc', function (err, marketInfo) {
     t.ifError(err, 'no error')
-    t.is(marketInfo.pair, 'btc_ltc') // case is dependent upon what's passed in
+    t.same(marketInfo.pair, 'btc_ltc') // case is dependent upon what's passed in
     t.true('rate' in marketInfo, 'has rate')
     t.true('minerFee' in marketInfo, 'has minerFee')
     t.true('limit' in marketInfo, 'has limit')
